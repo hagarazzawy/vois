@@ -8,11 +8,11 @@ public class testbase {
 	
 	public boolean areNodesValueGreaterThan (List<Node> list,int number)
 	{
-		int NumsViewValue=0;
+		int NodeValue=0;
 		for (Node NumsViewNode : list) {
-			NumsViewValue = Integer.parseInt(NumsViewNode.value());			
+			NodeValue = Integer.parseInt(NumsViewNode.value());			
 		}
-		if (NumsViewValue>number)
+		if (NodeValue>number)
 		return true;
 		else return false;			
 	}
