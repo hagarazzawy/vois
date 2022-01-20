@@ -28,7 +28,7 @@ public class getNumViews extends testbase {
 	@When("I send request to colourlovers api")
 	public void i_send_request_to_colourlovers_api() {
 		
-		RS = RQ.get("/patterns");
+		RS = RQ.get("http://www.colourlovers.com/api/patterns");
 		
 		assertEquals(RS.statusCode(), 200);
 	}
