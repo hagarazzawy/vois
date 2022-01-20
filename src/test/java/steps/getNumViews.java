@@ -38,8 +38,7 @@ public class getNumViews extends testbase {
 
 		numViews = RS.then().extract().path("patterns.pattern.numViews");
 		
-		assertFalse(numViews.list().isEmpty());
-		
+		assertFalse(numViews.list().isEmpty());		
 	}
 	
 	@And("the number of views is greater than {int}")
