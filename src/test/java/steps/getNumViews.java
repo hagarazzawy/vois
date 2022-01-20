@@ -28,7 +28,7 @@ public class getNumViews extends testbase {
 	@When("I send request to colourlovers api")
 	public void i_send_request_to_colourlovers_api() {
 		
-		RS = RQ.get("http://www.colourlovers.com/api/patterns");
+		RS = RQ.get("/patterns");
 		
 		assertEquals(RS.statusCode(), 200);
 	}
@@ -45,7 +45,7 @@ public class getNumViews extends testbase {
 	@And("the number of views is greater than {int}")
 	public void the_number_of_views_is_greater_than(int number) {
 		
-		assertTrue(areViewsGreaterThan(numViews.list(), number));
+		assertTrue(areNodesValueGreaterThan(numViews.list(), number));
 	}
 	
 
