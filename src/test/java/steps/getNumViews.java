@@ -5,9 +5,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -46,24 +43,12 @@ public class getNumViews {
 	@And("the number of views is greater than {int}")
 	public void the_number_of_views_is_greater_than(int number) {
 
-		List<Integer> numViewsList = new ArrayList<Integer>();
-		boolean result = false;
 		for (int i = 0; i < numViews.size(); i++) {
-			numViewsList.add(
-					Integer.parseInt(RS.xmlPath().getString("patterns.pattern.numViews[" + Integer.toString(i) + "]")));
-
-		}
-		for (int i = 0; i < numViewsList.size(); i++) {
-			if (numViewsList.get(i) > number)
-				result = true;
-			else {
-				result = false;
-				break;
-			}
+			int Viewsnum = Integer.parseInt(RS.xmlPath().getString("patterns.pattern.numViews["+i+"]"));
+			assertTrue(Viewsnum > number);
 
 		}
 
-		assertTrue(result);
 	}
 
 }
