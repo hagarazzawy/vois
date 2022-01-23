@@ -56,12 +56,11 @@ public class getNumViews {
 		for (int i = 0; i < numViewsList.size(); i++) {
 			if (numViewsList.get(i) > number)
 				result = true;
-			else
-				{
+			else {
 				result = false;
 				break;
-				}
-				
+			}
+
 		}
 
 		assertTrue(result);
