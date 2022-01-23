@@ -5,7 +5,9 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import base.testbase;
+import java.util.ArrayList;
+import java.util.List;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,22 +16,22 @@ import io.restassured.internal.path.xml.NodeChildrenImpl;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class getNumViews extends testbase {
+public class getNumViews {
 	Response RS;
 	RequestSpecification RQ;
 	NodeChildrenImpl numViews;
 
 	@Given("I am a user")
 	public void i_am_a_user() {
-		
+
 		RQ = given().header("User-Agent", "PostmanRuntime/7.28.4");
 	}
 
 	@When("I send request to colourlovers api")
 	public void i_send_request_to_colourlovers_api() {
-		
+
 		RS = RQ.get("http://www.colourlovers.com/api/patterns");
-		
+
 		assertEquals(RS.statusCode(), 200);
 	}
 
@@ -37,15 +39,28 @@ public class getNumViews extends testbase {
 	public void I_can_get_the_number_of_views_for_each_pattern() {
 
 		numViews = RS.then().extract().path("patterns.pattern.numViews");
-		
-		assertFalse(numViews.list().isEmpty());		
+
+		assertFalse(numViews.list().isEmpty());
 	}
-	
+
 	@And("the number of views is greater than {int}")
 	public void the_number_of_views_is_greater_than(int number) {
-		
-		assertTrue(areNodesValueGreaterThan(numViews.list(), number));
+
+		List<Integer> numViewsList = new ArrayList<Integer>();
+		boolean result = false;
+		for (int i = 0; i < numViews.size(); i++) {
+			numViewsList.add(
+					Integer.parseInt(RS.xmlPath().getString("patterns.pattern.numViews[" + Integer.toString(i) + "]")));
+
+		}
+		for (int y = 0; y < numViewsList.size(); y++) {
+			if (numViewsList.get(y) > number)
+				result = true;
+			else
+				result = false;
+		}
+
+		assertTrue(result);
 	}
-	
 
 }
