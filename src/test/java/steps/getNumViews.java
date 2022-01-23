@@ -53,8 +53,8 @@ public class getNumViews {
 					Integer.parseInt(RS.xmlPath().getString("patterns.pattern.numViews[" + Integer.toString(i) + "]")));
 
 		}
-		for (int y = 0; y < numViewsList.size(); y++) {
-			if (numViewsList.get(y) > number)
+		for (int i = 0; i < numViewsList.size(); i++) {
+			if (numViewsList.get(i) > number)
 				result = true;
 			else
 				result = false;
